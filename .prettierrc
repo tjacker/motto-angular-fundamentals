@@ -1,5 +1,13 @@
 {
 	"printWidth": 100,
 	"singleQuote": true,
-	"useTabs": true
+	"useTabs": true,
+	"overrides": [
+		{
+			"files": ["src/**/*.scss", "src/**/*.css"],
+			"options": {
+				"singleQuote": false
+			}
+		}
+	]
 }

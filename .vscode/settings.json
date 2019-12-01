@@ -1,4 +1,9 @@
 {
+	"cSpell.words": ["stylelint"],
+	"css.validate": false,
+	"less.validate": false,
+	"scss.validate": false,
+	"stylelint.enable": true,
 	"workbench.colorCustomizations": {
 		"activityBar.background": "#8a2ca2",
 		"activityBar.activeBorder": "#af9530",
