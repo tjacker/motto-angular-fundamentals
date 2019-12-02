@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnChanges, Input, Output, EventEmitter } from '@angular/core';
 
 import { Passenger } from '../../models/passenger.interface';
 
@@ -26,11 +26,18 @@ import { Passenger } from '../../models/passenger.interface';
 	`,
 	styleUrls: ['passenger-detail.component.scss']
 })
-export class PassengerDetailComponent {
+export class PassengerDetailComponent implements OnChanges {
 	@Input() detail: Passenger;
 	@Output() remove: EventEmitter<any> = new EventEmitter();
 	@Output() edit: EventEmitter<any> = new EventEmitter();
 	editing: boolean;
+
+	ngOnChanges(changes) {
+		// Only notifies the parent of changes when editing is complete rather then on each keypress
+		if (changes.detail) {
+			this.detail = { ...changes.detail.currentValue };
+		}
+	}
 
 	onNameChange(value: string) {
 		this.detail.fullName = value;
