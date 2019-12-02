@@ -7,7 +7,12 @@ import { Passenger } from '../../models/passenger.interface';
 	template: `
 		<div>
 			<span class="status" [class.checked-in]="detail.checkedIn"></span>
-			{{ detail.fullName }}
+			<div>
+				<input type="text" [value]="detail.fullName" />
+			</div>
+			<div>
+				{{ detail.fullName }}
+			</div>
 			<div class="date">
 				Check in date:
 				{{
