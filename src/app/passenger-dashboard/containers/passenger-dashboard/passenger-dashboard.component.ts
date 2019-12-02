@@ -4,7 +4,16 @@ import { Passenger } from '../../models/passenger.interface';
 
 @Component({
 	selector: 'passenger-dashboard',
-	templateUrl: 'passenger-dashboard.component.html',
+	template: `
+		<div>
+			<passenger-count [items]="passengers"></passenger-count>
+			<ul>
+				<li *ngFor="let passenger of passengers">
+					<passenger-detail [detail]="passenger"></passenger-detail>
+				</li>
+			</ul>
+		</div>
+	`,
 	styleUrls: ['passenger-dashboard.component.scss']
 })
 export class PassengerDashboardComponent implements OnInit {
