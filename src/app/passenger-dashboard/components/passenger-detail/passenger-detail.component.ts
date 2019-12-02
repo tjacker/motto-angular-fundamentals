@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 import { Passenger } from '../../models/passenger.interface';
 
@@ -7,10 +7,10 @@ import { Passenger } from '../../models/passenger.interface';
 	template: `
 		<div>
 			<span class="status" [class.checked-in]="detail.checkedIn"></span>
-			<div>
-				<input type="text" [value]="detail.fullName" />
+			<div *ngIf="editing">
+				<input type="text" [value]="detail.fullName" (input)="onNameChange(name.value)" #name />
 			</div>
-			<div>
+			<div *ngIf="!editing">
 				{{ detail.fullName }}
 			</div>
 			<div class="date">
@@ -20,12 +20,20 @@ import { Passenger } from '../../models/passenger.interface';
 				}}
 			</div>
 			<div class="children">Children: {{ detail.children?.length || 0 }}</div>
+			<button (click)="toggleEdit()">{{ editing ? 'Save' : 'Edit' }}</button>
 		</div>
 	`,
 	styleUrls: ['passenger-detail.component.scss']
 })
-export class PassengerDetailComponent implements OnInit {
+export class PassengerDetailComponent {
 	@Input() detail: Passenger;
+	editing: boolean;
 
-	ngOnInit() {}
+	onNameChange(value: string) {
+		this.detail.fullName = value;
+	}
+
+	toggleEdit() {
+		this.editing = !this.editing;
+	}
 }
