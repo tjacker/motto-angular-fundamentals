@@ -33,11 +33,13 @@ export class PassengerDashboardComponent implements OnInit {
 	}
 
 	handleEdit(event: Passenger): void {
-		this.passengers = this.passengers.map((passenger: Passenger) => {
-			if (passenger.id === event.id) {
-				passenger = { ...passenger, ...event };
-			}
-			return passenger;
+		this.passengerDashboardService.updatePassenger(event).subscribe((data: Passenger) => {
+			this.passengers = this.passengers.map((passenger: Passenger) => {
+				if (passenger.id === data.id) {
+					passenger = { ...passenger, ...event };
+				}
+				return passenger;
+			});
 		});
 	}
 

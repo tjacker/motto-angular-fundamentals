@@ -12,6 +12,11 @@ export class PassengerDashboardService {
 	constructor(private http: HttpClient) {}
 
 	getPassengers(): Observable<Passenger[]> {
+		// With HttpClient, you no longer need 'map(response => response.json())'
 		return this.http.get<Passenger[]>(PASSENGER_API);
+	}
+
+	updatePassenger(passenger: Passenger): Observable<Passenger> {
+		return this.http.put<Passenger>(`${PASSENGER_API}/${passenger.id}`, passenger);
 	}
 }
