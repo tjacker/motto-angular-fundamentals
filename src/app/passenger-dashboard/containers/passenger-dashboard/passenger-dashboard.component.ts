@@ -27,9 +27,12 @@ export class PassengerDashboardComponent implements OnInit {
 	constructor(private passengerDashboardService: PassengerDashboardService) {}
 
 	ngOnInit() {
-		this.passengerDashboardService
-			.getPassengers()
-			.subscribe((data: Passenger[]) => (this.passengers = data));
+		this.passengerDashboardService.getPassengers().subscribe(
+			(data: Passenger[]) => (this.passengers = data),
+			(error: any) => console.error('HTTP GET ERROR:', error.message),
+			// tslint:disable-next-line: no-console
+			() => console.info('HTTP GET SUCCESSFUL')
+		);
 	}
 
 	handleEdit(event: Passenger): void {
