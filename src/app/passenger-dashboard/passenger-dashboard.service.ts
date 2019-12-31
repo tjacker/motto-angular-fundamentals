@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 import { Passenger } from './models/passenger.interface';
 
@@ -13,7 +14,11 @@ export class PassengerDashboardService {
 
 	getPassengers(): Observable<Passenger[]> {
 		// With HttpClient, you no longer need 'map(response => response.json())'
-		return this.http.get<Passenger[]>(PASSENGER_API);
+		return this.http.get<Passenger[]>(PASSENGER_API).pipe(
+			catchError(error => {
+				throw error;
+			})
+		);
 	}
 
 	updatePassenger(passenger: Passenger): Observable<Passenger> {
