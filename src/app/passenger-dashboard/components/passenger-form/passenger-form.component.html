@@ -1,0 +1,42 @@
+<div>
+	<form #form="ngForm" (ngSubmit)="handleSubmit(form.value, form.valid)" novalidate>
+		<div class="form__field">
+			<label class="form__field-label" for="id">Passenger ID:</label>
+			<input id="id" type="number" name="id" #id="ngModel" [ngModel]="detail?.id" required />
+			<div *ngIf="id.errors?.required && id.dirty" class="error">
+				Passenger ID is required
+			</div>
+		</div>
+		<div class="form__field">
+			<label class="form__field-label" for="fullName">Passenger Name:</label>
+			<input id="fullName" type="text" name="fullName" #fullName="ngModel" [ngModel]="detail?.fullName" required />
+			<div *ngIf="fullName.errors?.required && fullName.dirty" class="error">
+				Passenger name is required
+			</div>
+		</div>
+		<fieldset class="form__field fieldset">
+			<legend>Checked In</legend>
+			<input type="radio" name="checkedIn" id="checkedInYes" [value]='true' [ngModel]='detail?.checkedIn'
+				(ngModelChange)="toggleCheckIn($event)">
+			<label class="form__field-label--inline" for="checkedInYes">Yes</label>
+			<input type="radio" name="checkedIn" id="checkedInNo" [value]='false' [ngModel]='detail?.checkedIn'
+				(ngModelChange)="toggleCheckIn($event)">
+			<label class="form__field-label--inline" for="checkedInNo">No</label>
+		</fieldset>
+		<div *ngIf="form.value.checkedIn" class="form__field">
+			<label class="form__field-label" for="checkInDate">Check in Date:</label>
+			<input id="checkInDate" type="number" name="checkInDate" [ngModel]="detail?.checkInDate" readonly />
+		</div>
+		<div class="form__field">
+			<label class="form__field-label" for="baggage">Luggage:</label>
+			<select name="baggage" id="baggage" [ngModel]="detail?.baggage">
+				<!-- value and selected can be combined as follows -->
+				<!-- [ngValue]="item.key" -->
+				<option *ngFor="let item of baggage" [value]="item.key" [selected]="item.key === detail?.baggage">
+					{{item.value}}
+				</option>
+			</select>
+		</div>
+		<button type="submit" [disabled]="form.invalid">Update passenger</button>
+	</form>
+</div>

@@ -1,0 +1,33 @@
+.form__field {
+	margin-bottom: 1.5rem;
+
+	&-label {
+		display: block;
+		font-weight: bold;
+		margin-bottom: 0.5rem;
+
+		&--inline {
+			padding-right: 0.5rem;
+		}
+	}
+
+	legend {
+		font-weight: bold;
+	}
+
+	input[type="radio"] {
+		margin-right: 0.5rem;
+	}
+
+	&.fieldset {
+		border-color: #f7f7f7f7;
+		width: 8.5rem;
+	}
+
+	.error {
+		color: #da6969;
+		font-size: 0.875rem;
+		font-weight: bold;
+		margin-top: 0.5rem;
+	}
+}

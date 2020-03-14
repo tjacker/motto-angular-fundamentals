@@ -3,7 +3,7 @@
 	box-sizing: border-box;
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
-	font: 300 15px/1.4 Helvetica, Arial, sans-serif, "Apple Color Emoji";
+	font: 300 16px/1.5 Helvetica, Arial, sans-serif, "Apple Color Emoji";
 }
 
 html,
@@ -36,10 +36,11 @@ input,
 button {
 	outline: 0;
 }
-input {
+input,
+select {
 	border: none;
 	background: #fff;
-	font-size: 13px;
+	font-size: 14px;
 	padding: 6px 30px 6px 10px;
 	border-radius: 1px;
 	box-shadow: 1px 1px 3px 1px #ccc;
@@ -53,6 +54,11 @@ button {
 	padding: 5px 10px;
 	text-align: center;
 	color: #fff;
+
+	&:disabled {
+		cursor: not-allowed;
+		opacity: 0.7;
+	}
 }
 p {
 	margin: 5px 0;
