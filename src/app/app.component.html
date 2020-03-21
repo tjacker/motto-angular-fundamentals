@@ -1,3 +1,14 @@
 <div class="app">
+  <nav class="nav">
+    <ul class="nav__links">
+      <li *ngFor="let item of nav"
+        class="nav__links-item">
+        <a [routerLink]="item.link"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: item.exact }"
+          class="nav__links-tag">{{ item.name }}</a>
+      </li>
+    </ul>
+  </nav>
   <router-outlet></router-outlet>
 </div>

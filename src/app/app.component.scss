@@ -1,0 +1,25 @@
+.nav {
+	margin-bottom: 0.75rem;
+	padding-bottom: 1rem;
+	border-bottom: 1px solid #dce5f2;
+
+	&__links {
+		display: flex;
+
+		&-item {
+			margin-right: 0.25rem;
+		}
+
+		&-tag {
+			background-color: #3a4250;
+			color: white;
+			padding: 0.25rem 0.75rem;
+			border-radius: 4px;
+
+			&.active {
+				background-color: #363c48;
+				color: #ceb6f1;
+			}
+		}
+	}
+}
