@@ -1,12 +1,10 @@
 {
-	"cSpell.words": [
-		"novalidate",
-		"stylelint"
-	],
+	"cSpell.words": ["novalidate", "stylelint"],
 	"css.validate": false,
 	"less.validate": false,
 	"scss.validate": false,
 	"stylelint.enable": true,
+	"html.format.wrapAttributes": "force",
 	"workbench.colorCustomizations": {
 		"activityBar.background": "#8a2ca2",
 		"activityBar.activeBackground": "#8a2ca2",
