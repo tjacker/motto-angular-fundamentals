@@ -4,31 +4,16 @@ import { Passenger } from '../../models/passenger.interface';
 
 @Component({
 	selector: 'passenger-detail',
-	template: `
-		<div>
-			<span class="status" [class.checked-in]="detail.checkedIn"></span>
-			<div *ngIf="editing">
-				<input type="text" [value]="detail.fullName" (input)="onNameChange(name.value)" #name />
-			</div>
-			<div *ngIf="!editing">
-				{{ detail.fullName }}
-			</div>
-			<div class="date">
-				Check in date:
-				{{
-					detail.checkInDate ? (detail.checkInDate | date: 'yMMMMd' | uppercase) : 'Not checked in'
-				}}
-			</div>
-			<button (click)="toggleEdit()">{{ editing ? 'Save' : 'Edit' }}</button>
-			<button (click)="onRemove()">Remove</button>
-		</div>
-	`,
+	templateUrl: 'passenger-detail.component.html',
 	styleUrls: ['passenger-detail.component.scss']
 })
 export class PassengerDetailComponent implements OnChanges {
 	@Input() detail: Passenger;
-	@Output() remove: EventEmitter<any> = new EventEmitter();
-	@Output() edit: EventEmitter<any> = new EventEmitter();
+
+	@Output() edit: EventEmitter<Passenger> = new EventEmitter<Passenger>();
+	@Output() remove: EventEmitter<Passenger> = new EventEmitter<Passenger>();
+	@Output() view: EventEmitter<Passenger> = new EventEmitter<Passenger>();
+
 	editing: boolean;
 
 	ngOnChanges(changes) {
@@ -51,5 +36,9 @@ export class PassengerDetailComponent implements OnChanges {
 
 	onRemove(): void {
 		this.remove.emit(this.detail);
+	}
+
+	goToPassenger(): void {
+		this.view.emit(this.detail);
 	}
 }

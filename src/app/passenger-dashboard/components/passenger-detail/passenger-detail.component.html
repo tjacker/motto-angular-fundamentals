@@ -1,0 +1,20 @@
+<div>
+	<span class="status"
+		[class.checked-in]="detail.checkedIn"></span>
+	<div *ngIf="editing">
+		<input type="text"
+			[value]="detail.fullName"
+			(input)="onNameChange(name.value)"
+			#name />
+	</div>
+	<div *ngIf="!editing">
+		{{ detail.fullName }}
+	</div>
+	<div class="date">
+		Check in date:
+		{{ detail.checkInDate ? (detail.checkInDate | date: 'yMMMMd' | uppercase) : 'Not checked in' }}
+	</div>
+	<button (click)="toggleEdit()">{{ editing ? 'Save' : 'Edit' }}</button>
+	<button (click)="onRemove()">Remove</button>
+	<button (click)="goToPassenger()">View</button>
+</div>
